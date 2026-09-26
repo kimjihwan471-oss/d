@@ -64,34 +64,20 @@ body{font-family:'Pretendard',sans-serif;color:#f1eefc;min-height:100%;margin:0;
 <span id="arrow-icon" class="text-xl text-violet-200 transition-transform duration-300">⌄</span>
 </div>
 <div id="letter" class="letter-content text-violet-100/90 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4 space-y-3">
-<p>안녕누나, 나 둘리야 오늘 누나생일인거 진심으로 축하해.</p>
-<p>누나가 있어서 내 생일때 진짜 행복했어! 누나가 나한테 한발 한발 다가 와준 덕분에 우리가 이렇게 서로 연락을 하는거 같아.</p>
-<p>물론 내가 지금 미자라 누나가 맘편하게 못만나는 점도 있는데... 내가 더 잘해서 누나가 편하게 사랑하고 걱정이 없었으면 좋겟어.</p>
+<p>안녕누나, 나 둘리야 오늘 누나생일인거 진심으로 축하.</p>
+<p>누나가 있어서 내 생일때 진짜 행복했어 누나가 나한테 한발 한발 다가 와준 덕분에 우리가 이렇게 서로 연락을 하는거 같아.</p>
+<p>물론 내가 지금 미자라 누나가 맘편하게 못만나는 점도 있는데... 내가 더 잘해서 누나가 편하게 사랑하고 내가 많이 좋아해</p>
 <p>내가 늘 사랑하구, 내가 늘 보고 싶고, 늘 안기고 싶고, 늘 누나만 보고 있으니깐 걱정마라구 연락해주면 좋겟어~ 사랑해 누나</p>
-<p>물론 누나한테 이런것만 해줄 수 밖에 없다는게 쫌 억울하고, 짜증난긴한데 그래도 누나랑 연락하고 누나가 날 사랑해주니깐 걱정이 조금 덜어지는거 같아.</p>
-<p>다시 한번더 생일 축하하구, 사랑하고, 좋아해 늘 내가 옆에 있어 늘 누나 연락만 기다리고 있구 내 마음이 전해지면 좋겟당 사랑해 누나</p>
 </div>
 </section>
 
 <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
-<div class="flex items-center justify-between">
-<div><h3 class="font-bold text-white text-lg">✨ 함께 만들어갈 반짝이는 순간들</h3><p class="text-xs text-violet-200/70 mt-0.5">소중한 추억들을 더 많이 쌓아가자</p></div>
-<label for="photoInput" class="shrink-0 cursor-pointer text-xs font-semibold px-3 py-2 rounded-full bg-white/10 border border-white/20 text-violet-100 hover:bg-white/20 transition-colors whitespace-nowrap">사진 추가하기 +</label>
-<input id="photoInput" type="file" accept="image/*" onchange="addPhoto(event)">
+<div class="flex items-center justify-between cursor-pointer" onclick="toggleLetter2()">
+<div class="flex items-center space-x-3"><span class="text-2xl">💜</span><div><h3 class="font-bold text-white text-lg">또 하나의 편지함</h3><p class="text-xs text-violet-200/70">클릭해서 편지를 열어보세요</p></div></div>
+<span id="arrow-icon2" class="text-xl text-violet-200 transition-transform duration-300">⌄</span>
 </div>
-<div id="gallery" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-<label for="photoInput" class="aspect-square rounded-2xl border border-dashed border-white/25 bg-white/5 flex flex-col items-center justify-center text-center p-2 cursor-pointer hover:bg-white/10 transition-colors">
-<span class="text-2xl mb-1">📷</span><span class="text-[11px] text-violet-200/80 leading-tight">사진 파일 선택<br>컴퓨터에서 사진을<br>업로드할 수 있어요</span>
-</label>
-<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#f6c9c2,#f4a6b8 60%,#e78bd0)">
-<div class="photo-cap"><span>따뜻한 봄날</span><span>♡</span></div>
-</div>
-<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#6fb7d6,#3f7fb0 60%,#f4c26b)">
-<div class="photo-cap"><span>푸른 바다처럼</span><span>♡</span></div>
-</div>
-<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#1b1440,#2c2360 55%,#4a3a7a)">
-<div class="photo-cap"><span>영원한 지금</span><span>♡</span></div>
-</div>
+<div id="letter2" class="letter-content text-violet-100/90 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4 space-y-3">
+<p>여기에 두 번째 편지 내용을 적어줘.</p>
 </div>
 </section>
 
@@ -122,18 +108,8 @@ flyPos.forEach(([l,t],i)=>{const b=document.createElement('div');b.className='bu
 function toggleLetter(){const letter=document.getElementById('letter'),arrow=document.getElementById('arrow-icon');
  letter.classList.toggle('open');arrow.style.transform=letter.classList.contains('open')?'rotate(180deg)':'rotate(0deg)'}
 
-function addPhoto(event){
- const file=event.target.files[0]; if(!file)return;
- if(!file.type.startsWith('image/')){alert('이미지 파일만 선택해주세요.');event.target.value='';return}
- const reader=new FileReader();
- reader.onload=function(e){
-  const photo=document.createElement('div');
-  photo.className='relative aspect-square rounded-2xl overflow-hidden';
-  const img=document.createElement('img');img.src=e.target.result;img.alt='추억 사진';img.className='gallery-image absolute inset-0';
-  photo.appendChild(img);document.getElementById('gallery').appendChild(photo);
- };
- reader.readAsDataURL(file);event.target.value='';
-}
+function toggleLetter2(){const letter=document.getElementById('letter2'),arrow=document.getElementById('arrow-icon2');
+ letter.classList.toggle('open');arrow.style.transform=letter.classList.contains('open')?'rotate(180deg)':'rotate(0deg)'}
 
 function triggerCelebration(){const toast=document.getElementById('toast');
  toast.classList.remove('translate-y-16','opacity-0');toast.classList.add('translate-y-0','opacity-100');
