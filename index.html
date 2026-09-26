@@ -2,81 +2,140 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HAPPY BIRTHDAY | 세상에서 가장 소중한 너에게</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
-body{font-family:'Pretendard',sans-serif;background:radial-gradient(circle at center,#1a1c29 0%,#0d0e15 100%);color:#e2e8f0;min-height:100vh;overflow-x:hidden}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{font-family:'Pretendard',sans-serif;color:#f1eefc;min-height:100%;margin:0;overflow-x:hidden;position:relative;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 90%, rgba(255,180,220,.14), transparent 60%),
+    linear-gradient(180deg,#171334 0%,#231c4a 30%,#3a2a63 55%,#6a4a86 78%,#a678a0 100%);
+}
+.night-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s infinite ease-in-out}
-@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-.glass-card{background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.moon{position:absolute;top:6%;right:8%;width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fffdf3,#fdf2c9 55%,#f3d98a 100%);
+  box-shadow:0 0 60px 18px rgba(255,244,200,.55), 0 0 140px 50px rgba(255,230,160,.25);}
+.cloud{position:absolute;border-radius:100px;filter:blur(1px);opacity:.55;
+  background:linear-gradient(180deg,rgba(255,220,240,.35),rgba(200,170,255,.18));}
+.butterfly{position:absolute;opacity:.5;animation:flutter 5s ease-in-out infinite}
+@keyframes flutter{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.sea{position:fixed;left:0;right:0;bottom:0;height:14%;z-index:0;
+  background:linear-gradient(180deg,rgba(120,90,150,0) 0%,rgba(90,60,120,.55) 100%);}
+.glass-card{position:relative;z-index:1;background:rgba(255,255,255,.06);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 20px 50px rgba(20,10,40,.35), inset 0 1px 0 rgba(255,255,255,.08);}
 .letter-content{max-height:0;overflow:hidden;transition:max-height .6s ease-out,opacity .6s ease-out;opacity:0}
-.letter-content.open{max-height:500px;opacity:1}
-.gallery-image{width:100%;height:100%;object-fit:cover;border-radius:1rem}
+.letter-content.open{max-height:600px;opacity:1}
+.gallery-image{width:100%;height:100%;object-fit:cover}
 #photoInput{display:none}
+.glow-ring{background:conic-gradient(from 0deg,#e9d5ff,#c4b5fd,#f5d0fe,#e9d5ff);box-shadow:0 0 40px rgba(196,181,253,.45)}
+.photo-cap{position:absolute;left:0;right:0;bottom:0;padding:.4rem .6rem;display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(180deg,rgba(20,10,35,0),rgba(15,8,30,.75));font-size:.7rem;color:#f1eefc}
+.title-grad{background:linear-gradient(90deg,#e9d5ff,#c4b5fd 40%,#f5d0fe);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style>
 </head>
-<body class="relative flex flex-col items-center justify-center p-4 sm:p-8">
-<div id="stars-container" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
-<main class="relative z-10 w-full max-w-xl mx-auto my-auto space-y-8 py-10">
+<body>
+<div class="night-scene" id="scene"></div>
+<div class="sea"></div>
+
+<main class="relative z-10 w-full max-w-xl mx-auto my-auto space-y-7 py-10 px-4 sm:px-8">
 <header class="text-center space-y-3">
-<span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest text-violet-300 bg-violet-500/10 border border-violet-500/20 uppercase">Special Day For You</span>
-<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">HAPPY <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-purple-400">BIRTHDAY</span></h1>
-<p class="text-slate-400 text-sm sm:text-base">세상에서 가장 찬란하게 빛나는 너의 생일을 축하해 🌙✨</p>
+<span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide text-violet-100 bg-white/10 border border-white/20">♡ Special Day For You ♡</span>
+<h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight title-grad" style="font-family:Georgia,'Times New Roman',serif;">HAPPY<br>BIRTHDAY</h1>
+<p class="text-violet-100/80 text-sm sm:text-base">세상에서 가장 찬란하게 빛나는 너의 생일을 축하해 ♡</p>
 </header>
+
 <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6">
-<div class="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1.5 bg-gradient-to-tr from-violet-500 to-purple-400 shadow-xl">
-<div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden"><span class="text-5xl">🎂</span></div>
+<div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-full p-1.5 glow-ring">
+<div class="w-full h-full rounded-full bg-[#241a3f] flex items-center justify-center overflow-hidden"><span class="text-6xl">🎂</span></div>
 </div>
-<div class="space-y-2"><h2 class="text-2xl font-bold text-white">사랑하는 나의 사람에게</h2><p class="text-slate-300 text-sm sm:text-base leading-relaxed">네가 태어난 이 소중한 날, 내 곁에 와주어서 정말 고마워.<br>오늘 하루는 세상에서 가장 행복한 주인공이 되었으면 좋겠어.</p></div>
+<div class="space-y-2"><h2 class="text-2xl font-bold text-white">사랑하는 나의 사람에게</h2>
+<p class="text-violet-100/85 text-sm sm:text-base leading-relaxed">네가 태어난 이 소중한 날, 내 곁에 와주어서 정말 고마워.<br>오늘 하루는 세상에서 가장 행복한 주인공이 되었으면 좋겠어.</p></div>
 </section>
+
 <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
 <div class="flex items-center justify-between cursor-pointer" onclick="toggleLetter()">
-<div class="flex items-center space-x-3"><span class="text-2xl">💌</span><div><h3 class="font-bold text-white text-lg">너에게 전하는 작은 마음</h3><p class="text-xs text-slate-400">클릭해서 편지를 열어보세요</p></div></div>
-<span id="arrow-icon" class="text-xl text-violet-300 transition-transform duration-300">↓</span>
+<div class="flex items-center space-x-3"><span class="text-2xl">💌</span><div><h3 class="font-bold text-white text-lg">너에게 전하는 작은 마음</h3><p class="text-xs text-violet-200/70">클릭해서 편지를 열어보세요</p></div></div>
+<span id="arrow-icon" class="text-xl text-violet-200 transition-transform duration-300">⌄</span>
 </div>
-<div id="letter" class="letter-content text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4 space-y-3">
+<div id="letter" class="letter-content text-violet-100/90 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4 space-y-3">
 <p>안녕누나, 나 둘리야 오늘 누나생일인거 진심으로 축하.</p>
 <p>누나가 있어서 내 생일때 진짜 행복했어 누나가 나한테 한발 한발 다가 와준 덕분에 우리가 이렇게 서로 연락을 하는거 같아.</p>
 <p>물론 내가 지금 미자라 누나가 맘편하게 못만나는 점도 있는데... 내가 더 잘해서 누나가 편하게 사랑하고 내가 많이 좋아해</p>
 <p>내가 늘 사랑하구, 내가 늘 보고 싶고, 늘 안기고 싶고, 늘 누나만 보고 있으니깐 걱정마라구 연락해주면 좋겟어~ 사랑해 누나</p>
 </div>
 </section>
+
 <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
-<h3 class="font-bold text-white text-lg text-center mb-4">✨ 함께 만들어갈 반짝이는 순간들</h3>
-<div id="gallery" class="grid grid-cols-3 gap-3">
-<div class="aspect-square rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center p-2 text-center hover:bg-white/10 transition-colors"><span class="text-2xl mb-1">🌷</span><span class="text-[11px] text-slate-400">따뜻한 봄날</span></div>
-<div class="aspect-square rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center p-2 text-center hover:bg-white/10 transition-colors"><span class="text-2xl mb-1">🌊</span><span class="text-[11px] text-slate-400">푸른 바다처럼</span></div>
-<div class="aspect-square rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center p-2 text-center hover:bg-white/10 transition-colors"><span class="text-2xl mb-1">💫</span><span class="text-[11px] text-slate-400">영원한 지금</span></div>
-</div>
-<div class="text-center pt-3">
-<label for="photoInput" class="inline-flex items-center justify-center cursor-pointer px-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-violet-500/80 to-purple-600/80 hover:from-violet-500 hover:to-purple-600 transition-all">📷 사진 파일 넣기</label>
+<div class="flex items-center justify-between">
+<div><h3 class="font-bold text-white text-lg">✨ 함께 만들어갈 반짝이는 순간들</h3><p class="text-xs text-violet-200/70 mt-0.5">소중한 추억들을 더 많이 쌓아가자</p></div>
+<label for="photoInput" class="shrink-0 cursor-pointer text-xs font-semibold px-3 py-2 rounded-full bg-white/10 border border-white/20 text-violet-100 hover:bg-white/20 transition-colors whitespace-nowrap">사진 추가하기 +</label>
 <input id="photoInput" type="file" accept="image/*" onchange="addPhoto(event)">
-<p class="text-xs text-slate-500 mt-2">컴퓨터에서 사진을 선택하면 갤러리에 추가됩니다.</p>
+</div>
+<div id="gallery" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<label for="photoInput" class="aspect-square rounded-2xl border border-dashed border-white/25 bg-white/5 flex flex-col items-center justify-center text-center p-2 cursor-pointer hover:bg-white/10 transition-colors">
+<span class="text-2xl mb-1">📷</span><span class="text-[11px] text-violet-200/80 leading-tight">사진 파일 선택<br>컴퓨터에서 사진을<br>업로드할 수 있어요</span>
+</label>
+<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#f6c9c2,#f4a6b8 60%,#e78bd0)">
+<div class="photo-cap"><span>따뜻한 봄날</span><span>♡</span></div>
+</div>
+<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#6fb7d6,#3f7fb0 60%,#f4c26b)">
+<div class="photo-cap"><span>푸른 바다처럼</span><span>♡</span></div>
+</div>
+<div class="relative aspect-square rounded-2xl overflow-hidden" style="background:linear-gradient(160deg,#1b1440,#2c2360 55%,#4a3a7a)">
+<div class="photo-cap"><span>영원한 지금</span><span>♡</span></div>
+</div>
 </div>
 </section>
-<button onclick="triggerCelebration()" class="w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">🎉 생일 축하 폭죽 터트리기</button>
-<footer class="text-center text-xs text-slate-500 pt-4"><p>Made with all my heart, just for you.</p></footer>
+
+<button onclick="triggerCelebration()" class="w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-lg shadow-fuchsia-500/25 hover:shadow-fuchsia-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">🎉 생일 축하 폭죽 터트리기</button>
+<footer class="text-center text-xs text-violet-200/60 pt-2"><p>♡ Made with all my heart, just for you. ♡</p></footer>
 </main>
-<div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-16 opacity-0 transition-all duration-300 bg-white/90 text-slate-900 font-semibold px-5 py-3 rounded-full shadow-2xl pointer-events-none z-50 text-sm">✨ 생일 정말 축하해! 오늘 세상에서 제일 행복하자! 💖</div>
+
+<div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-16 opacity-0 transition-all duration-300 bg-white/95 text-slate-900 font-semibold px-5 py-3 rounded-full shadow-2xl pointer-events-none z-50 text-sm">✨ 생일 정말 축하해! 오늘 세상에서 제일 행복하자! 💖</div>
+
 <script>
-const starsContainer=document.getElementById('stars-container');
-for(let i=0;i<40;i++){const star=document.createElement('div');star.classList.add('star');const size=Math.random()*3+1;star.style.width=`${size}px`;star.style.height=`${size}px`;star.style.top=`${Math.random()*100}%`;star.style.left=`${Math.random()*100}%`;star.style.animationDuration=`${Math.random()*3+2}s`;star.style.animationDelay=`${Math.random()*3}s`;starsContainer.appendChild(star)}
-function toggleLetter(){const letter=document.getElementById('letter'),arrow=document.getElementById('arrow-icon');letter.classList.toggle('open');arrow.style.transform=letter.classList.contains('open')?'rotate(180deg)':'rotate(0deg)'}
+const scene=document.getElementById('scene');
+// stars
+for(let i=0;i<50;i++){const s=document.createElement('div');s.classList.add('star');const size=Math.random()*3+1;
+ s.style.width=size+'px';s.style.height=size+'px';s.style.top=Math.random()*80+'%';s.style.left=Math.random()*100+'%';
+ s.style.animationDuration=(Math.random()*3+2)+'s';s.style.animationDelay=(Math.random()*3)+'s';scene.appendChild(s)}
+// moon
+const moon=document.createElement('div');moon.className='moon';scene.appendChild(moon);
+// clouds
+const cloudDefs=[[10,30,260,60],[60,5,300,70],[5,85,320,60],[55,78,260,55]];
+cloudDefs.forEach(([l,t,w,h])=>{const c=document.createElement('div');c.className='cloud';
+ c.style.left=l+'%';c.style.top=t+'%';c.style.width=w+'px';c.style.height=h+'px';scene.appendChild(c)});
+// butterflies
+const flyPos=[[8,45],[88,55],[15,70],[85,25]];
+flyPos.forEach(([l,t],i)=>{const b=document.createElement('div');b.className='butterfly';b.style.left=l+'%';b.style.top=t+'%';
+ b.style.animationDelay=(i*0.7)+'s';b.innerHTML='<svg width="26" height="20" viewBox="0 0 26 20"><path d="M13 10 C10 0,0 0,2 8 C0 14,10 14,13 10 Z" fill="#e9d5ff" opacity="0.85"/><path d="M13 10 C16 0,26 0,24 8 C26 14,16 14,13 10 Z" fill="#f5d0fe" opacity="0.85"/></svg>';
+ scene.appendChild(b)});
+
+function toggleLetter(){const letter=document.getElementById('letter'),arrow=document.getElementById('arrow-icon');
+ letter.classList.toggle('open');arrow.style.transform=letter.classList.contains('open')?'rotate(180deg)':'rotate(0deg)'}
+
 function addPhoto(event){
  const file=event.target.files[0]; if(!file)return;
  if(!file.type.startsWith('image/')){alert('이미지 파일만 선택해주세요.');event.target.value='';return}
  const reader=new FileReader();
  reader.onload=function(e){
   const photo=document.createElement('div');
-  photo.className='aspect-square rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden';
-  const img=document.createElement('img');img.src=e.target.result;img.alt='추억 사진';img.className='gallery-image';
+  photo.className='relative aspect-square rounded-2xl overflow-hidden';
+  const img=document.createElement('img');img.src=e.target.result;img.alt='추억 사진';img.className='gallery-image absolute inset-0';
   photo.appendChild(img);document.getElementById('gallery').appendChild(photo);
  };
  reader.readAsDataURL(file);event.target.value='';
 }
-function triggerCelebration(){const toast=document.getElementById('toast');toast.classList.remove('translate-y-16','opacity-0');toast.classList.add('translate-y-0','opacity-100');setTimeout(()=>{toast.classList.remove('translate-y-0','opacity-100');toast.classList.add('translate-y-16','opacity-0')},3000)}
+
+function triggerCelebration(){const toast=document.getElementById('toast');
+ toast.classList.remove('translate-y-16','opacity-0');toast.classList.add('translate-y-0','opacity-100');
+ setTimeout(()=>{toast.classList.remove('translate-y-0','opacity-100');toast.classList.add('translate-y-16','opacity-0')},3000)}
 </script>
 </body>
 </html>
